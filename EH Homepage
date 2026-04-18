@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EH1</title>
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+ body {
+font-family: Arial, sans-serif;
+margin:0;
+background:#fafafa;
+color:#333;
+}
+
+header{
+background:#130;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+nav{
+background:#eee;
+text-align:center;
+padding:15px;
+}
+
+nav a{
+margin:15px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:#f5f5f5;
+}
+
+section{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.button{
+background:#000;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:5px;
+}
+
+.book{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:6px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#130;
+color:white;
+margin-top:50px;
+}   
+
+ .button:hover, .button:active, .button:focus { 
+                background-color: rgb(56, 107, 66);
+                 
+            }  
+ 
+ nav a:hover, nav a:active, nav a:focus {
+            color: rgb(56, 107, 66);
+        } 
+ 
+  
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f7f7f6;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #1008;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #752;
+            }
+      
+    .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    
+</style>
+<body>
+
+<header>
+
+<h1>EH</h1>
+<p>Author • Poetry • Faith</p>
+
+</header>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="books.html">Books</a>
+<a href="poetry.html">Poetry</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a herf=“none”>Store</a>
+
+</nav>
+
+<section class="hero">
+
+<h2>Welcome</h2>
+
+<p>
+Welcome to my personal program and projects web page. Here you can see links to my projects and see any news or updates posted.
+</p>
+
+<a class="button" href="books.html">Explore Projects</a>
+
+</section>
+
+<section>
+
+<h2>Latest Writing</h2>
+
+<p>New poems and reflections will appear here.</p>
+
+</section>
+
+
+
+<footer>
+
+<p> General Contact:<br>
+ +123-456-78910<br>
+
+    Eh1234@Eh.com
+</p> 
+ 
+<p> Fan Mail:<br>
+ +123-456-78910<br>
+
+    Eh1234@Eh.com
+</p> 
+
+<p>© 2026 Exospacer</p>
+
+</footer>
+
+</body>
+</html>
