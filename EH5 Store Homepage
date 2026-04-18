@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EH5</title>
+    <style>
+ 
+ 
+      body {
+font-family: Arial, sans-serif;
+margin:0;
+background:#fafafa;
+color:#333;
+}
+
+header{
+background:#130;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+nav{
+background:#eee;
+text-align:center;
+padding:15px;
+}
+
+nav a{
+margin:15px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:#f5f5f5;
+}
+
+section{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.button{
+background:#000;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:5px;
+}
+
+.book{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:6px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#130;
+color:white;
+margin-top:50px;
+}   
+
+ .button:hover, .button:active, .button:focus { 
+                background-color: rgb(56, 107, 66);
+                 
+            }  
+ 
+ nav a:hover, nav a:active, nav a:focus {
+            color: rgb(56, 107, 66);
+        } 
+   
+     a {
+            text-decoration: none;
+            color:rgb(117, 138, 123);
+        } 
+   
+        
+      
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Store</h1>
+    </header>
+
+    <!-- Example Poetry/Photo Product -->
+    <div class="product">
+        
+        
+        <section class="hero">
+        <h2>"Title of My Poem"</h2>
+        <p><em>A short excerpt of your poem goes here to entice readers...</em></p>
+        
+        <!-- Replace the URL below with your actual Gumroad product link -->
+        <a class="button" href="">Buy on...</a>
+ </section>   </div>
+<br>
+ <h2>Find your interests</h2>
+  <div>
+        <label>What's your name?
+        <input id="name" type="text">
+        </label><br><br>
+           <label>What is your last name?
+        <input id="name" type="text">
+        </label>
+        <br><br>
+        <label>What interests you?
+        <select id="lang">
+            <option value="na">Nature</option>
+            <option value="sp">Space</option>
+            <option value="fo">Foods</option>
+             <option value="ca">Cartoon</option>
+        </select>
+        </label>
+        <br>
+        <button id="button" type="button">Submit Interests</button>
+        <div id="message"></div>
+    </div>
+  <script>
+  // Step 1: Find the element we want the event on
+  var button = document.getElementById("button");
+  // Step 2: Define the event listener function
+     
+  var onButtonClick = function() {
+    var name = document.getElementById("name").value;
+    var lang = document.getElementById("lang").value;
+    var greeting;
+    if (lang === "na") {
+        greeting = "Check out list 1. Welcome, " + name;
+    } else if (lang === "sp") {
+        greeting = "Check out list 2. Welcome, " + name;
+    } else if (lang === "fo") {
+        greeting = "Check out list 3.Welcome, " + name;
+    }
+    else if (lang === "ca") {
+        greeting = "Check out list 4.Welcome, " + name;
+    }
+    document.getElementById("message").textContent += greeting;  
+  };
+  // Step 3: Attach event listener to element
+  button.addEventListener("click", onButtonClick);
+  </script>
+<h1>List</h1>
+<table><tr> <td></td>
+                <td><a target="_blank" href="not there">List 1.</a></td>
+            </tr>
+<tr> <td></td>
+                <td><a target="_blank" href="not there">List 2</a></td>
+            </tr>
+   <tr> <td></td>
+                <td><a href="blank">List 3.</a></td>
+            </tr>         
+             <tr> <td></td>
+                <td><a href="blank">List 4</a></td>
+            </tr>    
+</table>
+    <footer>
+        <p>© 2026 My Poetry Brand</p>
+    </footer>
+</body>
+</html>
