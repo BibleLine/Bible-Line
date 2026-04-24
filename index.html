@@ -8,6 +8,118 @@
   <title>Bible Line - Author • Poetry • Faith</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico">
+<style>
+  
+  .feature-list {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding-left: 0;
+}
+
+.feature-list li {
+  padding: 0.75rem 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.feature-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.product-card {
+  background: var(--color-bg-card);
+  padding: 25px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px var(--color-border);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .product-card {
+  background: #2a2a2a;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px var(--color-border);
+}
+
+body.dark-mode .product-card:hover {
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
+}
+
+.product-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+body.dark-mode .product-card h3 {
+  color: var(--color-accent);
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  margin: 0.5rem 0;
+}
+
+.product-description {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+/* Project Cards */
+.project-card {
+  background: var(--color-bg-card);
+  padding: 25px;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 0 5px var(--color-border);
+  border-left: 5px solid var(--color-accent);
+}
+
+body.dark-mode .project-card {
+  background: #2a2a2a;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.project-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.project-status {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.project-card p {
+  margin: 0.75rem 0;
+  line-height: 1.6;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}</style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
