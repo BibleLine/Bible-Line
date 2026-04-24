@@ -153,7 +153,57 @@ body.dark-mode footer {
                  text-decoration: none;
                  cursor: pointer;
              }
-     
+     .dark-mode-toggle {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  position: absolute;
+}
+
+/* Position button in TOP RIGHT corner */
+.dark-mode-toggle.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+/* Position button in TOP LEFT corner */
+.dark-mode-toggle.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+/* Position button in BOTTOM RIGHT corner */
+.dark-mode-toggle.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Position button in BOTTOM LEFT corner */
+.dark-mode-toggle.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+/* Position button CENTER of header */
+.dark-mode-toggle.center {
+  position: static;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Make header position relative so absolute positioning works inside it */
+header {
+  background:#130;
+  color:white;
+  text-align:center;
+  padding:40px;
+  position: relative;
+}
 </style>
 <body>
 
