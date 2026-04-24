@@ -11,6 +11,12 @@ font-family: Arial, sans-serif;
 margin:0;
 background:#fafafa;
 color:#333;
+transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #1a1a1a;
+  color: #e0e0e0;
 }
 
 header{
@@ -20,10 +26,18 @@ text-align:center;
 padding:40px;
 }
 
+body.dark-mode header {
+  background: #0a0a0a;
+}
+
 nav{
 background:#eee;
 text-align:center;
 padding:15px;
+}
+
+body.dark-mode nav {
+  background: #2a2a2a;
 }
 
 nav a{
@@ -33,10 +47,18 @@ color:#333;
 font-weight:bold;
 }
 
+body.dark-mode nav a {
+  color: #e0e0e0;
+}
+
 .hero{
 text-align:center;
 padding:80px 20px;
 background:#f5f5f5;
+}
+
+body.dark-mode .hero {
+  background: #222;
 }
 
 section{
@@ -51,6 +73,24 @@ color:white;
 padding:12px 20px;
 text-decoration:none;
 border-radius:5px;
+cursor:pointer;
+border:none;
+font-size:16px;
+}
+
+.dark-mode-toggle {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+}
+
+body.dark-mode .dark-mode-toggle {
+  background: #666;
 }
 
 .book{
@@ -61,44 +101,53 @@ border-radius:6px;
 box-shadow:0 0 5px rgba(0,0,0,0.1);
 }
 
+body.dark-mode .book {
+  background: #2a2a2a;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
 footer{
 text-align:center;
 padding:30px;
 background:#130;
 color:white;
 margin-top:50px;
-}   
+}
+
+body.dark-mode footer {
+  background: #0a0a0a;
+}
 
  .button:hover, .button:active, .button:focus { 
                 background-color: rgb(56, 107, 66);
                  
-            }  
+             }  
  
  nav a:hover, nav a:active, nav a:focus {
-            color: rgb(56, 107, 66);
-        } 
- 
+             color: rgb(56, 107, 66);
+         } 
   
-            ::-webkit-scrollbar {
-                width: 10px;
-            }
-            ::-webkit-scrollbar-track {
-                background: #f7f7f6;
-            }
-            ::-webkit-scrollbar-thumb {
-                background: #1008;
-            }
-            ::-webkit-scrollbar-thumb:hover {
-                background: #752;
-            }
-      
-    .close:hover,
-            .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
-            }
-    
+   
+             ::-webkit-scrollbar {
+                 width: 10px;
+             }
+             ::-webkit-scrollbar-track {
+                 background: #f7f7f6;
+             }
+             ::-webkit-scrollbar-thumb {
+                 background: #1008;
+             }
+             ::-webkit-scrollbar-thumb:hover {
+                 background: #752;
+             }
+       
+     .close:hover,
+             .close:focus {
+                 color: #bbb;
+                 text-decoration: none;
+                 cursor: pointer;
+             }
+     
 </style>
 <body>
 
@@ -106,6 +155,7 @@ margin-top:50px;
 
 <h1>Bible Line</h1>
 <p>Author • Poetry • Faith</p>
+<button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
  <link rel="icon" type="image/x-icon" href="https://drive.google.com/file/d/1wjQnBx5Zd56rHjjAGriFYm5ATyuRBEmE/view?usp=sharing">
 </header>
 
@@ -167,6 +217,27 @@ God's warm love is what you will always find.
 <p>© 2026 Bible Line</p>
 
 </footer>
+
+<script>
+// Toggle dark mode
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  
+  // Save preference to browser storage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+  }
+}
+
+// Load saved preference on page load
+window.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+  }
+});
+</script>
 
 </body>
 </html>
