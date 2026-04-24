@@ -11,6 +11,10 @@ background:#fafafa;
 color:#333;
 }
 
+ body.dark-mode nav {
+  background: #2a2a2a;
+}
+ 
 header{
 background:#130;
 color:white;
@@ -18,10 +22,18 @@ text-align:center;
 padding:40px;
 }
 
+ body.dark-mode header {
+  background: #0a0a0a;
+}
+
 nav{
 background:#eee;
 text-align:center;
 padding:15px;
+}
+
+ body.dark-mode nav {
+  background: #2a2a2a;
 }
 
 nav a{
@@ -31,12 +43,20 @@ color:#333;
 font-weight:bold;
 }
 
+body.dark-mode nav a {
+  color: #e0e0e0;
+}
+ 
 .hero{
 text-align:center;
 padding:80px 20px;
 background:#f5f5f5;
 }
 
+ body.dark-mode .hero {
+  background: #222;
+}
+ 
 section{
 max-width:900px;
 margin:auto;
@@ -49,6 +69,32 @@ color:white;
 padding:12px 20px;
 text-decoration:none;
 border-radius:5px;
+cursor:pointer;
+border:none;
+font-size:16px;
+}
+
+ .dark-mode-toggle {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+}
+
+body.dark-mode .dark-mode-toggle {
+  background: #666;
+}
+ 
+.book{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:6px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
 }
 
 .book{
@@ -59,6 +105,11 @@ border-radius:6px;
 box-shadow:0 0 5px rgba(0,0,0,0.1);
 }
 
+body.dark-mode .book {
+  background: #2a2a2a;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+ 
 footer{
 text-align:center;
 padding:30px;
@@ -67,6 +118,16 @@ color:white;
 margin-top:50px;
 }   
 
+body.dark-mode footer {
+  background: #0a0a0a;
+}
+
+ /* Position button in TOP RIGHT corner */
+.dark-mode-toggle.top-right {
+  top: 20px;
+  right: 20px;
+}
+ 
 .button:hover, .button:active, .button:focus { 
                 background-color: rgb(56, 107, 66);
                  
