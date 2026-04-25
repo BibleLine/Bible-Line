@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bible-Line: Resources</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+ body {
+font-family: Arial, sans-serif;
+margin:0;
+background:#fafafa;
+color:#333;
+transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+header{
+background:#130;
+color:white;
+text-align:center;
+padding:40px;
+position: relative;
+}
+
+body.dark-mode header {
+  background: #0a0a0a;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #130;
+    color: white;
+    padding-top: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+body.dark-mode .sidebar-menu {
+    background: #0a0a0a;
+}
+
+.sidebar-menu.active {
+    transform: translateX(0);
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-menu a:hover, 
+.sidebar-menu a:active, 
+.sidebar-menu a:focus {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    padding-left: 25px;
+    color: rgb(56, 107, 66);
+}
+
+.sidebar-menu a.active {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    color: rgb(56, 107, 66);
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2001;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode .menu-toggle {
+    background: #666;
+}
+
+.menu-toggle:hover {
+    background: rgb(56, 107, 66);
+    transform: scale(1.05);
+}
+
+/* Close button inside sidebar */
+.sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.sidebar-close:hover {
+    color: rgb(56, 107, 66);
+}
+
+/* Overlay when sidebar is open */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    display: none;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Sidebar menu title */
+.sidebar-title {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+nav {
+background:#eee;
+text-align:center;
+padding:15px;
+}
+
+body.dark-mode nav  {
+  background: #2a2a2a;
+}
+
+nav a {
+margin:15px;
+text-decoration:none;
+color:#333;
+font-weight:bold;
+}
+
+body.dark-mode nav a {
+  color: #e0e0e0;
+} 
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:#f5f5f5;
+}
+
+body.dark-mode .hero {
+  background: #222;
+}
+
+section{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.button{
+background:#000;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:5px;
+cursor:pointer;
+border:none;
+font-size:16px;
+}
+
+.dark-mode-toggle {
+  background: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: rgb(56, 107, 66);
+}
+
+body.dark-mode .dark-mode-toggle {
+  background: #666;
+}
+
+.book{
+background:white;
+padding:20px;
+margin-bottom:25px;
+border-radius:6px;
+box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .book {
+  background: #2a2a2a;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#130;
+color:white;
+margin-top:50px;
+}
+
+body.dark-mode footer {
+  background: #0a0a0a;
+}
+
+ /* Position button in TOP RIGHT corner */
+.dark-mode-toggle.top-right {
+  top: 20px;
+  right: 20px;
+}
+ 
+ .button:hover, .button:active, .button:focus { 
+                background-color: rgb(56, 107, 66);
+                 
+             }  
+ 
+ nav a:hover, nav a:active, nav a:focus {
+             color: rgb(56, 107, 66);
+         } 
+  
+   
+             ::-webkit-scrollbar {
+                 width: 10px;
+             }
+             ::-webkit-scrollbar-track {
+                 background: #f7f7f6;
+             }
+             ::-webkit-scrollbar-thumb {
+                 background: #1008;
+             }
+             ::-webkit-scrollbar-thumb:hover {
+                 background: #752;
+             }
+       
+     .close:hover,
+             .close:focus {
+                 color: #bbb;
+                 text-decoration: none;
+                 cursor: pointer;
+             }
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+    }
+
+    .sidebar-menu {
+        width: 200px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar-menu" id="sidebarMenu">
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+    <div class="sidebar-title">Bible Line</div>
+    <a href="index.html">Home</a>
+    <a href="poetry.html">Poetry</a>
+    <a href="about.html" class="active">About</a>
+    <a href="store.html">Store</a>
+    <a href="resources.html">Projects</a>
+ 
+</div>
+
+<!-- Menu Toggle Button -->
+<button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">☰</button>
+
+<header>
+<h1>About</h1>
+ <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="poetry.html">Poetry</a>
+<a href="about.html">About</a>
+<a href="store.html">Store</a>
+<a href="resources.html">Resources</a>
+</nav>
+
+<br><br>
+
+<section class="hero">
+<h2>Resources for all ages:</h2>
+<p> </p>
+</section>
+
+
+
+<script>
+// Toggle sidebar menu
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+// Close sidebar menu
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+// Close sidebar when clicking on a link
+document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+        closeSidebar();
+    });
+});
+
+// Close sidebar when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeSidebar();
+    }
+});
+
+// Toggle dark mode
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  
+  // Save preference to browser storage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+  }
+}
+
+// Load saved preference on page load
+window.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+  }
+
+  // Set active sidebar link based on current page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
