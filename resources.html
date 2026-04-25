@@ -339,9 +339,20 @@ body.dark-mode footer {
 
 <section>
 <h2>Resources for all ages:</h2>
-<p><a href="https://freedomhomeschooling.com/">1. Freedom Homeschooling</a><br> A christian homeschooling resources website.</p><br><br>
+
+ <p><a href="https://freedomhomeschooling.com/">1. Freedom Homeschooling</a><br> A christian homeschooling resources website.</p><br><br> 
+
+ <p>Link 1: <span id="link1">https://example.com</span></p>
+<button class="copy-btn" data-url="https://freedomhomeschooling.com/">Copy Link </button>
+ 
  <p><a href="https://unsocialized.net/">2.unSolcialized</a><br>Homeschooling resources website for kindergarten to 12th grade.</p><br><br>
+ <p>Link 2: <span id="link2">https://example.com</span></p>
+<button class="copy-btn" data-url="https://unsocialized.net/">Copy Link </button>
+ 
   <p><a href="https://www.khanacademy.org/">3.Khan Academy</a><br>An free online curriculum for K-12th. </p><br><br>
+ <p>Link 2: <span id="link2">https://example.com</span></p>
+<button class="copy-btn" data-url="https://unsocialized.net/">Copy Link </button>
+ 
  <p><a href="https://www.ixl.com/">4. IXL</a><br>A homeschooling curriculum that adaptes to your grade level when you take there dignostic. </p><br><br>
  <p><a href="https://pbskids.org/">5. PBS Kids</a><br>Gives fun and entertaining games and videos for any age. </p><br><br>
   <p><a href="https://us-en.superbook.cbn.com/">6. Superbook</a><br>Christian Bible lessons, games, printouts and more!</p><br><br>
@@ -351,7 +362,28 @@ body.dark-mode footer {
 
 
 <script>
-// Toggle sidebar menu
+//Copy URL button script
+
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const urlToCopy = button.getAttribute('data-url');
+        
+        // Use the Clipboard API
+        navigator.clipboard.writeText(urlToCopy).then(() => {
+            // Optional: Provide feedback to the user
+            const originalText = button.innerText;
+            button.innerText = 'Copied!';
+            setTimeout(() => {
+                button.innerText = originalText;
+            }, 1500);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    });
+});
+
+ 
+ // Toggle sidebar menu
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebarMenu');
     const overlay = document.getElementById('sidebarOverlay');
