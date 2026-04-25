@@ -1,299 +1,415 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bible Line </title>
-<link rel="stylesheet" href="css/style.css">
+<title>Bible Line - Sidebar Menu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
 <style>
- body {
-font-family: Arial, sans-serif;
-margin:0;
-background:#fafafa;
-color:#333;
-transition: background 0.3s, color 0.3s;
-}
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fafafa;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+  }
 
-body.dark-mode {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
+  body.dark-mode {
+    background: #1a1a1a;
+    color: #e0e0e0;
+  }
 
-header{
-background:#130;
-color:white;
-text-align:center;
-padding:40px;
-}
+  header {
+    background: #130;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    position: relative;
+  }
 
-body.dark-mode header {
-  background: #0a0a0a;
-}
+  body.dark-mode header {
+    background: #0a0a0a;
+  }
 
-nav {
-background:#eee;
-text-align:center;
-padding:15px;
-}
+  /* Sidebar Menu */
+  .sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #130;
+    color: white;
+    padding-top: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
 
-body.dark-mode nav  {
-  background: #2a2a2a;
-}
+  body.dark-mode .sidebar-menu {
+    background: #0a0a0a;
+  }
 
-nav a {
-margin:15px;
-text-decoration:none;
-color:#333;
-font-weight:bold;
-}
+  .sidebar-menu.active {
+    transform: translateX(0);
+  }
 
-body.dark-mode nav a {
-  color: #e0e0e0;
-} 
+  .sidebar-menu a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+  }
 
-.hero{
-text-align:center;
-padding:80px 20px;
-background:#f5f5f5;
-}
+  .sidebar-menu a:hover, 
+  .sidebar-menu a:active, 
+  .sidebar-menu a:focus {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    padding-left: 25px;
+    color: rgb(56, 107, 66);
+  }
 
-body.dark-mode .hero {
-  background: #222;
-}
+  .sidebar-menu a.active {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    color: rgb(56, 107, 66);
+  }
 
-section{
-max-width:900px;
-margin:auto;
-padding:40px;
-}
+  /* Menu Toggle Button */
+  .menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2001;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.button{
-background:#000;
-color:white;
-padding:12px 20px;
-text-decoration:none;
-border-radius:5px;
-cursor:pointer;
-border:none;
-font-size:16px;
-}
+  body.dark-mode .menu-toggle {
+    background: #666;
+  }
 
-.dark-mode-toggle {
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 10px;
-}
+  .menu-toggle:hover {
+    background: rgb(56, 107, 66);
+    transform: scale(1.05);
+  }
 
-body.dark-mode .dark-mode-toggle {
-  background: #666;
-}
+  /* Close button inside sidebar */
+  .sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+  }
 
-.book{
-background:white;
-padding:20px;
-margin-bottom:25px;
-border-radius:6px;
-box-shadow:0 0 5px rgba(0,0,0,0.1);
-}
+  .sidebar-close:hover {
+    color: rgb(56, 107, 66);
+  }
 
-body.dark-mode .book {
-  background: #2a2a2a;
-  box-shadow: 0 0 5px rgba(255,255,255,0.1);
-}
+  /* Overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    display: none;
+  }
 
-footer{
-text-align:center;
-padding:30px;
-background:#130;
-color:white;
-margin-top:50px;
-}
+  .sidebar-overlay.active {
+    display: block;
+  }
 
-body.dark-mode footer {
-  background: #0a0a0a;
-}
+  /* Adjust header for menu */
+  header {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
 
- /* Position button in TOP RIGHT corner */
-.dark-mode-toggle.top-right {
-  top: 20px;
-  right: 20px;
-}
- 
- .button:hover, .button:active, .button:focus { 
-                background-color: rgb(56, 107, 66);
-                 
-             }  
- 
- nav a:hover, nav a:active, nav a:focus {
-             color: rgb(56, 107, 66);
-         } 
-  
-   
-             ::-webkit-scrollbar {
-                 width: 10px;
-             }
-             ::-webkit-scrollbar-track {
-                 background: #f7f7f6;
-             }
-             ::-webkit-scrollbar-thumb {
-                 background: #1008;
-             }
-             ::-webkit-scrollbar-thumb:hover {
-                 background: #752;
-             }
-       
-     .close:hover,
-             .close:focus {
-                 color: #bbb;
-                 text-decoration: none;
-                 cursor: pointer;
-             }
-     .dark-mode-toggle {
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 10px;
-  position: absolute;
-}
+  /* Sidebar menu title */
+  .sidebar-title {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
 
-/* Position button in TOP RIGHT corner */
-.dark-mode-toggle.top-right {
-  top: 20px;
-  right: 20px;
-}
+  nav {
+    background: #eee;
+    text-align: center;
+    padding: 15px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
 
-/* Position button in TOP LEFT corner */
-.dark-mode-toggle.top-left {
-  top: 20px;
-  left: 20px;
-}
+  body.dark-mode nav {
+    background: #2a2a2a;
+  }
 
-/* Position button in BOTTOM RIGHT corner */
-.dark-mode-toggle.bottom-right {
-  bottom: 20px;
-  right: 20px;
-}
+  nav a {
+    margin: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: inline-block;
+  }
 
-/* Position button in BOTTOM LEFT corner */
-.dark-mode-toggle.bottom-left {
-  bottom: 20px;
-  left: 20px;
-}
+  body.dark-mode nav a {
+    color: #e0e0e0;
+  }
 
-/* Position button CENTER of header */
-.dark-mode-toggle.center {
-  position: static;
-  display: block;
-  margin: 10px auto;
-}
+  nav a:hover, nav a:active, nav a:focus {
+    color: rgb(56, 107, 66);
+  }
 
-/* Make header position relative so absolute positioning works inside it */
-header {
-  background:#130;
-  color:white;
-  text-align:center;
-  padding:40px;
-  position: relative;
-}
+  .hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: #f5f5f5;
+  }
+
+  body.dark-mode .hero {
+    background: #222;
+  }
+
+  section {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+  }
+
+  .button {
+    background: #000;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+  }
+
+  .dark-mode-toggle {
+    background: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: background 0.3s ease;
+  }
+
+  .dark-mode-toggle:hover {
+    background: rgb(56, 107, 66);
+  }
+
+  body.dark-mode .dark-mode-toggle {
+    background: #666;
+  }
+
+  .book {
+    background: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode .book {
+    background: #2a2a2a;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    background: #130;
+    color: white;
+    margin-top: 50px;
+  }
+
+  body.dark-mode footer {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f7f7f6;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1008;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #752;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      width: 45px;
+      height: 45px;
+      padding: 10px;
+    }
+
+    .sidebar-menu {
+      width: 200px;
+    }
+  }
 </style>
+</head>
 <body>
 
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar-menu" id="sidebarMenu">
+  <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  <div class="sidebar-title">Bible Line</div>
+  <a href="index.html" class="active">Home</a>
+  <a href="poetry.html">Poetry</a>
+  <a href="about.html">About</a>
+  <a href="store.html">Store</a>
+  <a href="projects.html">Projects</a>
+  <a href="emailnewsletter.html">Newsletter</a>
+</div>
+
+<!-- Menu Toggle Button -->
+<button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">☰</button>
+
 <header>
-
-<h1>Bible Line</h1>
-<p>Author • Poetry • Faith</p>
-  <button class="dark-mode-toggle top-right" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
+  <h1>Bible Line</h1>
+  <p>Author • Poetry • Faith</p>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 </header>
 
 <nav>
-
-<a href="index.html">Home</a>
-<a href="poetry.html">Poetry</a>
-<a href="about.html">About</a>
-<a href="store.html">Store</a>
-<a href="projects.html">Projects</a>
-    <a href="emailnewsletter.html">Newsletter</a>
-
-
+  <a href="index.html">Home</a>
+  <a href="poetry.html">Poetry</a>
+  <a href="about.html">About</a>
+  <a href="store.html">Store</a>
+  <a href="projects.html">Projects</a>
+  <a href="emailnewsletter.html">Newsletter</a>
 </nav>
+
 <br>
+
 <section class="hero">
-
-<h2>Welcome</h2>
-
-<p>
-Welcome to Bible Line. Bible Line is a christian resources website to help and give Bible resources, lesson plans, and more.
-</p>
-
-
-
+  <h2>Welcome</h2>
+  <p>
+    Welcome to Bible Line. Bible Line is a christian resources website to help and give Bible resources, lesson plans, and more.
+  </p>
 </section>
 
 <section>
-
-<h2>Latest Writing</h2>
-
-
-<h3>The love Definition</h3> 
-Love is patient, <br><br>
-
-Even though we can be complacent. <br><br>
-
-Love never fails, nor does it fade,<br><br>
-
-it is always there, even when you're afraid.<br><br>
-
-Love endures all things without weakening,<br><br>
-
-even when we can be very self-seeking.<br><br>
-
-Love is neither jealous nor rudefull,<br><br>
-
-instead, it is kind and thoughtful.<br><br>
-
-So if you are ever in a bind,<br><br>
-
-God's warm love is what you will always find.
+  <h2>Latest Writing</h2>
+  <h3>The Love Definition</h3> 
+  Love is patient, <br><br>
+  Even though we can be complacent. <br><br>
+  Love never fails, nor does it fade,<br><br>
+  it is always there, even when you're afraid.<br><br>
+  Love endures all things without weakening,<br><br>
+  even when we can be very self-seeking.<br><br>
+  Love is neither jealous nor rudefull,<br><br>
+  instead, it is kind and thoughtful.<br><br>
+  So if you are ever in a bind,<br><br>
+  God's warm love is what you will always find.
 </section>
 
-
 <footer>
-
- 
-
-<p>© 2026 Bible Line</p>
-
+  <p>© 2026 Bible Line</p>
 </footer>
 
 <script>
-// Toggle dark mode
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  
-  // Save preference to browser storage
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
-  } else {
-    localStorage.setItem('darkMode', 'disabled');
+  // Toggle sidebar menu
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
   }
-}
 
-// Load saved preference on page load
-window.addEventListener('DOMContentLoaded', function() {
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
+  // Close sidebar menu
+  function closeSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
   }
-});
+
+  // Close sidebar when clicking on a link
+  document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+      closeSidebar();
+    });
+  });
+
+  // Close sidebar when pressing Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeSidebar();
+    }
+  });
+
+  // Toggle dark mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  }
+
+  // Load saved dark mode preference
+  window.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Set active sidebar link based on current page
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('active');
+      }
+    });
+  });
 </script>
 
 </body>
