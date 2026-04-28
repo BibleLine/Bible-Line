@@ -5,7 +5,20 @@
 <title>Bible Line | About</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
- body {
+       .dropdown-content {
+  display: none;
+  position: absolute; /* Position it below the item */
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Show the box */
+}
+  
+  body {
 font-family: Arial, sans-serif;
 margin:0;
 background:#fafafa;
@@ -315,7 +328,11 @@ body.dark-mode footer {
   <a href="index.html" class="active">Home</a>
   <a href="poetry.html">Poetry</a>
   <a href="about.html">About</a>
+     <div class="dropdown">
   <a href="resources.html">Resources</a>
+     <div class="dropdown-content">
+  </div> 
+</div>
  
 </div>
 
