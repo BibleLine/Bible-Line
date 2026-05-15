@@ -366,7 +366,28 @@ body.dark-mode footer {
 
 
 <script>
-// Toggle sidebar menu
+//Copy URL button script
+
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const urlToCopy = button.getAttribute('data-url');
+        
+        // Use the Clipboard API
+        navigator.clipboard.writeText(urlToCopy).then(() => {
+            // Optional: Provide feedback to the user
+            const originalText = button.innerText;
+            button.innerText = 'Copied!';
+            setTimeout(() => {
+                button.innerText = originalText;
+            }, 1500);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    });
+});
+
+ 
+ // Toggle sidebar menu
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebarMenu');
     const overlay = document.getElementById('sidebarOverlay');
@@ -423,6 +444,7 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 
 </body>
 </html>
