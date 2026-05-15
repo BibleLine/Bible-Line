@@ -475,6 +475,57 @@ for His name is Yeshua the Messiah.</p>
 
 </footer>
 <script>
+//Copy URL button script
+
+document.querySelectorAll('.copy-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const urlToCopy = button.getAttribute('data-url');
+        
+        // Use the Clipboard API
+        navigator.clipboard.writeText(urlToCopy).then(() => {
+            // Optional: Provide feedback to the user
+            const originalText = button.innerText;
+            button.innerText = 'Copied!';
+            setTimeout(() => {
+                button.innerText = originalText;
+            }, 1500);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    });
+});
+
+ 
+ // Toggle sidebar menu
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+// Close sidebar menu
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+// Close sidebar when clicking on a link
+document.querySelectorAll('.sidebar-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+        closeSidebar();
+    });
+});
+
+// Close sidebar when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeSidebar();
+    }
+});
+
 // Toggle dark mode
 function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
@@ -492,63 +543,16 @@ window.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
   }
-});
-  // Toggle sidebar menu
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebarMenu');
-    const overlay = document.getElementById('sidebarOverlay');
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-  }
 
-  // Close sidebar menu
-  function closeSidebar() {
-    const sidebar = document.getElementById('sidebarMenu');
-    const overlay = document.getElementById('sidebarOverlay');
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-  }
-
-  // Close sidebar when clicking on a link
+  // Set active sidebar link based on current page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.sidebar-menu a').forEach(link => {
-    link.addEventListener('click', function() {
-      closeSidebar();
-    });
-  });
-
-  // Close sidebar when pressing Escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeSidebar();
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
     }
   });
-
-  // Toggle dark mode
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    
-    if (document.body.classList.contains('dark-mode')) {
-      localStorage.setItem('darkMode', 'enabled');
-    } else {
-      localStorage.setItem('darkMode', 'disabled');
-    }
-  }
-
-  // Load saved dark mode preference
-  window.addEventListener('DOMContentLoaded', function() {
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      document.body.classList.add('dark-mode');
-    }
-
-    // Set active sidebar link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.sidebar-menu a').forEach(link => {
-      if (link.getAttribute('href') === currentPage) {
-        link.classList.add('active');
-      }
-    });
-  });
- 
+});
 </script>
+
 </body>
 </html>
