@@ -324,7 +324,6 @@
 <!-- Menu Toggle Button -->
 <button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">☰</button>
 <header>
-  <img src="bibleline_logo.png" alt="Company Logo" width="700" height="400">
   <button class="dark-mode-toggle top-right" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 </header>
     <!-- Menu Toggle Button -->
@@ -441,6 +440,18 @@
                 }
             });
         });
+// Toggle dark mode
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  
+  // Save preference to browser storage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+  }
+}
+        
     </script>
 </body>
 </html>
