@@ -511,35 +511,32 @@ for His name is Yeshua the Messiah.</p>
   }
 </style>
 
-<!-- Widget Logic connecting to the API -->
 <script>
-  async function fetchDailyVerse() {
-    try {
-      // 1. Ask the API for today's verse in JSON format
-      const response = await fetch('https://ourmanna.com');
-      
-      if (!response.ok) throw new Error('Network response failure');
-      
-      const data = await response.json();
-      
-      // 2. Extract the text and reference from the API response
-      const text = data.verse.details.text;
-      const reference = data.verse.details.reference;
+  // This simulates the exact response your website gets from the API
+  const apiResponse = { 
+    "verse": { 
+      "details": { 
+        "text": "The world and its desires pass away, but the man who does the will of God lives forever.", 
+        "reference": "1 John 2:17", 
+        "version": "NIV", 
+        "verseurl": "http://www.ourmanna.com/" 
+      }, 
+      "notice": "Powered by OurManna.com" 
+    } 
+  };
 
-      // 3. Inject the live data into the website HTML
-      document.getElementById("verse-text").innerText = `“${text}”`;
-      document.getElementById("verse-reference").innerText = reference;
-      
-    } catch (error) {
-      console.error('Error fetching verse:', error);
-      // Fallback text if the API goes down
-      document.getElementById("verse-text").innerText = "“Trust in the Lord with all your heart.”";
-      document.getElementById("verse-reference").innerText = "Proverbs 3:5";
-    }
+  function displayVerseData() {
+    // 1. Drill down into the JSON layers to extract the text and reference
+    const extractedText = apiResponse.verse.details.text;
+    const extractedReference = apiResponse.verse.details.reference;
+
+    // 2. Put the extracted values into your HTML text blocks
+    document.getElementById("verse-text").innerText = `“${extractedText}”`;
+    document.getElementById("verse-reference").innerText = extractedReference;
   }
 
-  // Execute the API call immediately on page load
-  window.onload = fetchDailyVerse;
+  // Run this function as soon as the page finishes loading
+  window.onload = displayVerseData;
 </script>
   
   <footer>
