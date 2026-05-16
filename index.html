@@ -326,6 +326,12 @@ body.dark-mode .feature-card {
     text-decoration: none;
     font-weight: bold;
 }
+        .search-section { text-align: center; }
+.search-box { display: flex; max-width: 500px; margin: 0 auto 20px; }
+.search-box input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 4px 0 0 4px; }
+.search-box button { padding: 12px 20px; background: rgb(56, 107, 66); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; }
+.search-result-box { max-width: 500px; margin: 0 auto; padding: 20px; background: #fff; border-left: 4px solid rgb(56, 107, 66); border-radius: 4px; }
+body.dark-mode .search-result-box { background: #2a2a2a; }
     </style>
 </head>
 <body>
@@ -393,6 +399,15 @@ body.dark-mode .feature-card {
     </div>
 </section>
 
+<section class="search-section">
+    <h2>Quick Scripture Lookup</h2>
+    <div class="search-box">
+        <input type="text" id="scriptureInput" placeholder="e.g., John 3:16 or Genesis 1:1">
+        <button onclick="lookupScripture()">Search</button>
+    </div>
+    <div id="searchResult" class="search-result-box" style="display:none;"></div>
+</section>
+    
     <!-- Verse of the Day Widget Container -->
     <div id="verse-widget">
         <div class="verse-header">Verse of the Day</div>
@@ -400,6 +415,7 @@ body.dark-mode .feature-card {
         <p id="verse-reference"></p>
     </div>
 
+    
     <footer>
         <p>© 2026 Bible Line</p>
     </footer>
@@ -483,7 +499,24 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', 'disabled');
   }
 }
+        async function lookupScripture() {
+    const query = document.getElementById('scriptureInput').value.trim();
+    const resultBox = document.getElementById('searchResult');
+    if (!query) return;
+
+    resultBox.style.display = "block";
+    resultBox.innerText = "Searching...";
+
+    try {
+        // Uses the open translation API
+        const response = await fetch(`https://bible-api.com{encodeURIComponent(query)}`);
+        if (!response.ok) throw new Error();
+        const data = await response.json();
         
-    </script>
+        resultBox.innerHTML = `<strong>${data.reference} (${data.translation_name})</strong><p>"${data.text.trim()}"</p>`;
+    } catch (e) {
+        resultBox.innerHTML = "<span style='color:red;'>Verse not found. Please check spelling (e.g., 'John 3:16').</span>";
+    }
+}    </script>
 </body>
 </html>
