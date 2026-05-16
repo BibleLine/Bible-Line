@@ -466,10 +466,56 @@ someone who can do greater than Thee?<br><br>
  
 for His name is Yeshua the Messiah.</p>
 
-   <h2>Wanna download the poem?</h2><br>
-   <a href="Who is He - Liam Diaz.pdf" download="Who is He - Liam Diaz.pdf">
-  <button type="button">Download PDF</button>
+ <!-- Styling matching bibleline.github.io -->
+<style>
+  .bibleline-btn-container {
+    display: inline-block;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  .bibleline-download-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  /* Dark grey primary link text */
+  .bibleline-download-btn .main-text {
+    font-size: 16px;
+    color: #24292e;
+    font-weight: 500;
+  }
+
+  /* Small italic subtext matching the page style */
+  .bibleline-download-btn .sub-text {
+    font-size: 12px;
+    color: #586069;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* Smooth hover background swap matching the menu items */
+  .bibleline-download-btn:hover {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    opacity: 0.85;
+  }
+</style>
+
+<!-- The actual functioning download link -->
+<a href="document.pdf" download="custom-filename.pdf" class="bibleline-btn-container">
+  <button type="button" class="bibleline-download-btn">
+    <span class="main-text">Download Document</span>
+    <span class="sub-text">Click to save PDF</span>
+  </button>
 </a>
+
  </section>
 
 <!-- Verse of the Day Widget Container -->
