@@ -407,39 +407,6 @@ body.dark-mode .search-result-box { background: #2a2a2a; }
     </div>
     <div id="searchResult" class="search-result-box" style="display:none;"></div>
 </section>
-
-<!-- Interactive Lookup Section -->
-<section class="search-section">
-    <h2>Quick Scripture Lookup</h2>
-    <div style="display: flex; max-width: 500px; margin: 0 auto 20px;">
-        <input type="text" id="scriptureInput" placeholder="e.g., John 3:16" style="flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 4px 0 0 4px;">
-        <button onclick="lookupScripture()" style="padding: 12px 20px; background: rgb(56, 107, 66); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer;">Search</button>
-    </div>
-    <div id="searchResult" style="display:none; max-width: 500px; margin: 0 auto; padding: 20px; background: #fff; border-left: 4px solid rgb(56, 107, 66); border-radius: 4px; text-align: left; color: #333;"></div>
-</section>
-
-<!-- Search Logic Script (Place this right before your closing </body> tag) -->
-<script>
-async function lookupScripture() {
-    const query = document.getElementById('scriptureInput').value.trim();
-    const resultBox = document.getElementById('searchResult');
-    if (!query) return;
-
-    resultBox.style.display = "block";
-    resultBox.innerHTML = "Searching...";
-
-    try {
-        const response = await fetch(`https://bible-api.com{encodeURIComponent(query)}`);
-        if (!response.ok) throw new Error('Not found');
-        const data = await response.json();
-        
-        resultBox.innerHTML = `<strong>${data.reference} (${data.translation_name})</strong><p style="margin-top: 10px; font-style: italic;">"${data.text.trim()}"</p>`;
-    } catch (e) {
-        resultBox.innerHTML = "<span style='color:red;'>Verse not found. Please verify spelling (e.g., 'John 3:16').</span>";
-    }
-}
-</script>
-
     
     <!-- Verse of the Day Widget Container -->
     <div id="verse-widget">
