@@ -478,6 +478,58 @@ God's warm love is what you will always find.
     border-radius: 6px;
     opacity: 0.85;
   }
+  /* Style the clickable/hoverable word */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dashed #7f8c8d; /* Subtle line under Selah */
+  color: #2c3e50;
+  cursor: help;
+  font-weight: bold;
+}
+
+/* Base style for the hidden popup box */
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  width: 240px;
+  background-color: #333333; /* Dark background */
+  color: #ffffff; /* White text */
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  
+  /* Position the tooltip above the word */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 51%;
+  margin-left: -120px; /* Centers the box */
+  
+  /* Smooth fade-in effect */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow/pointer pointing down */
+.tooltip-container .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333333 transparent transparent transparent;
+}
+
+/* Show the tooltip when hovering (Desktop) */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
 </style>
 
 <!-- The actual functioning download link -->
@@ -513,9 +565,18 @@ someone who can do greater than Thee?<br><br>
  
  And part open a great sea. <br><br>
  
- There is none like our Jireh,<br><br>
+ There is none like our   <span class="tooltip-container">Jireh
+    <span class="tooltip-text">
+      <strong>Jireh:</strong>Jireh is a Hebrew word that translates to "the Lord will provide" or "the Lord will see to it."
+    </span>
+  </span>
+<br><br>
  
-for His name is Yeshua the Messiah.</p>
+,for His name is <span class="tooltip-container">Yeshua
+    <span class="tooltip-text">
+      <strong>Yeshua:</strong> Yeshua (ישוע) is a Hebrew and Aramaic name that translates to "salvation," "deliverance," or "rescue." It is the original, historic name of Jesus of Nazareth, sharing the same root as the Hebrew word for salvation, yeshuah.
+    </span>
+  </span> the Messiah.</p>
 
  <!-- Styling matching bibleline.github.io -->
 <style>
@@ -730,6 +791,40 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+    // Select all tooltip elements
+  document.querySelectorAll('.tooltip-container').forEach(tooltip => {
+    tooltip.addEventListener('click', function(e) {
+      // Toggle a class to manually show/hide on mobile touch
+      const textBox = this.querySelector('.tooltip-text');
+      const isVisible = textBox.style.visibility === 'visible';
+      
+      // Close any other open tooltips first
+      document.querySelectorAll('.tooltip-text').forEach(el => {
+        el.style.visibility = 'hidden';
+        el.style.opacity = '0';
+      });
+
+      // Toggle current tooltip
+      if (!isVisible) {
+        textBox.style.visibility = 'visible';
+        textBox.style.opacity = '1';
+      } else {
+        textBox.style.visibility = 'hidden';
+        textBox.style.opacity = '0';
+      }
+      
+      // Prevent page from doing weird scrolling shifts
+      e.stopPropagation(); 
+    });
+  });
+
+  // Close tooltips if user clicks anywhere else on the screen
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.tooltip-text').forEach(el => {
+      el.style.visibility = 'hidden';
+      el.style.opacity = '0';
+    });
+  });
 </script>
 
 </body>
