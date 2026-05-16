@@ -468,38 +468,12 @@ for His name is Yeshua the Messiah.</p>
   
  </section>
 
-  <div class="verse-widget-container" style="max-width: 400px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center; background-color: #f9f9f9;">
-    <h3 style="margin-top: 0; color: #333;">Verse of the Day</h3>
-    <div id="votd-content" style="font-style: italic; font-size: 1.1em; color: #444; margin-bottom: 10px;">
-        Loading today's scripture...
-    </div>
-    <div id="votd-reference" style="font-weight: bold; color: #0056b3;"></div>
-</div>
-
-<script>
-    // Fetches a random verse from a public API and displays it
-    async function fetchVerseOfThDay() {
-        try {
-            // Using a public domain/free API
-            const response = await fetch('https://ourmanna.com');
-            const data = await response.json();
-            
-            // Extract the verse and reference
-            const verseText = data.verse.details.text;
-            const verseRef = data.verse.details.reference;
-            
-            // Display the data in the widget
-            document.getElementById('votd-content').innerHTML = `"${verseText}"`;
-            document.getElementById('votd-reference').innerHTML = `— ${verseRef}`;
-        } catch (error) {
-            console.error("Error fetching the verse:", error);
-            document.getElementById('votd-content').innerHTML = "Unable to load the Verse of the Day at this time.";
-        }
-    }
-
-    // Run the function when the page loads
-    fetchVerseOfThDay();
-</script>
+<script src="https://www.biblegateway.com/votd/votd.write.callback.js"></script>
+<script src="https://www.biblegateway.com/votd/get/?format=json&version=AMP&callback=BG.votdWriteCallback"></script>
+<!-- alternative for no javascript -->
+<noscript>
+<iframe framespacing="0" frameborder="no" src="https://www.biblegateway.com/votd/get/?format=html&version=AMP">View Verse of the Day</iframe>
+</noscript>
   
   <footer>
 
