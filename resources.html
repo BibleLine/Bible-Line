@@ -319,7 +319,90 @@ body.dark-mode footer {
  }
 
 
- 
+ /* Section Spacing */
+.resource-section {
+  margin-bottom: 40px;
+}
+
+.resource-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 8px;
+}
+
+/* CSS Grid Container */
+.resource-grid {
+  display: grid;
+  /* Automatically wraps cards. Minimum width 280px, expands to fill space */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px; /* Space between cards */
+}
+
+/* Individual Resource Card */
+.resource-card {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  justify-content: space-between; /* Pushes the action link to the bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect */
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Content Styling */
+.resource-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #0366d6; /* GitHub-style blue link color */
+}
+
+.resource-card p {
+  font-size: 14px;
+  color: #586069;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Makes description fill space so links align perfectly */
+}
+
+/* Action Link */
+.card-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional Category Badges */
+.card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #e1f5fe;
+  color: #0288d1;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-badge.media {
+  background: #ede7f6;
+  color: #5e35b1;
+}
 </style>
 </head>
 
@@ -367,7 +450,38 @@ body.dark-mode footer {
 
 <br><br>
 
+<!-- Section 1: Study Tools -->
+<section class="resource-section">
+  <h2>Study Tools</h2>
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="card-badge">Tool</div>
+      <h3>Strong's Concordance</h3>
+      <p>An exhaustive lexicon used to study original Hebrew and Greek word meanings.</p>
+      <a href="#" class="card-link">Open Tool →</a>
+    </div>
 
+    <div class="resource-card">
+      <div class="card-badge">Tool</div>
+      <h3>Blue Letter Bible</h3>
+      <p>In-depth study tools including advanced word searches and commentaries.</p>
+      <a href="#" class="card-link">Visit Site →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Media & Audio -->
+<section class="resource-section">
+  <h2>Media & Audio</h2>
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="card-badge media">Video</div>
+      <h3>The Bible Project</h3>
+      <p>Short animated videos walking through biblical books and core theological structures.</p>
+      <a href="#" class="card-link">Watch Videos →</a>
+    </div>
+  </div>
+</section>
   
 <section>
 <h2>Resources for all ages:</h2><br>
