@@ -362,6 +362,82 @@
   God's warm love is what you will always find.
 </section>
 
+<!-- Verse of the Day Widget Container -->
+<div id="verse-widget">
+  <div class="verse-header">Verse of the Day</div>
+  <p id="verse-text">Fetching today's verse...</p>
+  <p id="verse-reference"></p>
+</div>
+
+<!-- Widget Styling (Customized to match your site's dark poetry theme) -->
+<style>
+  #verse-widget {
+    font-family: 'Playfair Display', serif;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #1a1a1a; /* Matches your dark sections */
+    border-radius: 4px; /* Matches your subtle borders */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid #333333;
+  }
+  .verse-header {
+    font-family: 'Cinzel', serif; /* Matches your site headers */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ae914b; /* Subtle gold accent color */
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  #verse-text {
+    font-size: 1.35rem;
+    font-style: italic;
+    color: #e0e0e0; /* Clean, readable off-white */
+    line-height: 1.7;
+    margin-bottom: 15px;
+  }
+  #verse-reference {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ae914b;
+    margin: 0;
+  }
+</style>
+
+<!-- Widget Logic (Fetches live data from the API) -->
+<script>
+  async function fetchDailyVerse() {
+    try {
+      // Fetches the live daily JSON data from the API
+      const response = await fetch('https://ourmanna.com');
+      
+      if (!response.ok) throw new Error('Network response failure');
+      
+      const data = await response.json();
+      
+      // Drills into the JSON layers
+      const text = data.verse.details.text;
+      const reference = data.verse.details.reference;
+
+      // Injects the live data into the HTML
+      document.getElementById("verse-text").innerText = `“${text}”`;
+      document.getElementById("verse-reference").innerText = reference;
+      
+    } catch (error) {
+      console.error('Error fetching verse:', error);
+      // Fallback text if the external API ever experiences downtime
+      document.getElementById("verse-text").innerText = "“The world and its desires pass away, but the man who does the will of God lives forever.”";
+      document.getElementById("verse-reference").innerText = "1 John 2:17";
+    }
+  }
+
+  // Runs the live fetch as soon as the page finishes loading
+  window.onload = fetchDailyVerse;
+</script>
+  
 <footer>
   <p>© 2026 Bible Line</p>
 </footer>
