@@ -361,7 +361,63 @@ header {
       width: 200px;
     }
   }
- 
+
+  .audio-player-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 16px;
+  max-width: 450px;
+}
+
+.audio-info {
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+}
+
+.audio-info strong {
+  font-size: 14px;
+  color: #24292f;
+}
+
+.audio-info span {
+  font-size: 12px;
+  color: #57606a;
+  margin-top: 2px;
+}
+
+.audio-control-btn {
+  background-color: #2da44e;
+  color: #ffffff;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.audio-control-btn:hover {
+  background-color: #2c974b;
+}
+
+/* Changes button color to red/gray when music is actively playing */
+.audio-control-btn.playing {
+  background-color: #cf222e;
+}
+
+.audio-control-btn.playing:hover {
+  background-color: #b60213;
+}
+
 </style>
     
 </head>
@@ -542,7 +598,53 @@ God's warm love is what you will always find.
   
 </section><br>
 
-<section> <h3>Who is He? Overview</h3><br>
+<section> 
+  <div class="audio-player-container">
+  <div class="audio-info">
+    <strong>Lesson 1 Audio Summary</strong>
+    <span>Duration: 2:45</span>
+  </div>
+
+  <!-- Hidden HTML5 Audio Element -->
+  <audio id="audioResourceFile" src="audio/your-recording.mp3" preload="none"></audio>
+
+  <!-- Control Button -->
+  <button id="playAudioBtn" class="audio-control-btn">
+    <span class="btn-icon">▶</span> <span class="btn-text">Play Recording</span>
+  </button>
+</div>
+
+<script>
+  const audioFile = document.getElementById('audioResourceFile');
+  const playBtn = document.getElementById('playAudioBtn');
+  const btnIcon = playBtn.querySelector('.btn-icon');
+  const btnText = playBtn.querySelector('.btn-text');
+
+  playBtn.addEventListener('click', function() {
+    if (audioFile.paused) {
+      // If audio is stopped, play it
+      audioFile.play();
+      btnIcon.textContent = '⏸';
+      btnText.textContent = 'Pause Recording';
+      playBtn.classList.add('playing');
+    } else {
+      // If audio is active, pause it
+      audioFile.pause();
+      btnIcon.textContent = '▶';
+      btnText.textContent = 'Play Recording';
+      playBtn.classList.remove('playing');
+    }
+  });
+
+  // Automatically reset the button text when the audio recording finishes playing
+  audioFile.addEventListener('ended', function() {
+    btnIcon.textContent = '▶';
+    btnText.textContent = 'Play Recording';
+    playBtn.classList.remove('playing');
+  });
+</script>
+  
+  <h3>Who is He? Overview</h3><br>
  <p>This poem based on <a href="https://www.biblegateway.com/passage/?search=Isaiah%2042%3A5-6&version=AMP">Isaiah 45:5-6.</a>It is a piece of lyrical poetry designed to exalt the Creator.<br>
   It takes the form of a rhetorical question-and-answer series<br>
   that highlights the power, creativity, and intimate care of God. Made by Ethan Mark. </p></section>
