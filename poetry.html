@@ -599,50 +599,7 @@ God's warm love is what you will always find.
 </section><br>
 
 <section> 
-  <div class="audio-player-container">
-  <div class="audio-info">
-    <strong>Lesson 1 Audio Summary</strong>
-    <span>Duration: 2:45</span>
-  </div>
 
-  <!-- Hidden HTML5 Audio Element -->
-  <audio id="audioResourceFile" src="audio/your-recording.mp3" preload="none"></audio>
-
-  <!-- Control Button -->
-  <button id="playAudioBtn" class="audio-control-btn">
-    <span class="btn-icon">▶</span> <span class="btn-text">Play Recording</span>
-  </button>
-</div>
-
-<script>
-  const audioFile = document.getElementById('audioResourceFile');
-  const playBtn = document.getElementById('playAudioBtn');
-  const btnIcon = playBtn.querySelector('.btn-icon');
-  const btnText = playBtn.querySelector('.btn-text');
-
-  playBtn.addEventListener('click', function() {
-    if (audioFile.paused) {
-      // If audio is stopped, play it
-      audioFile.play();
-      btnIcon.textContent = '⏸';
-      btnText.textContent = 'Pause Recording';
-      playBtn.classList.add('playing');
-    } else {
-      // If audio is active, pause it
-      audioFile.pause();
-      btnIcon.textContent = '▶';
-      btnText.textContent = 'Play Recording';
-      playBtn.classList.remove('playing');
-    }
-  });
-
-  // Automatically reset the button text when the audio recording finishes playing
-  audioFile.addEventListener('ended', function() {
-    btnIcon.textContent = '▶';
-    btnText.textContent = 'Play Recording';
-    playBtn.classList.remove('playing');
-  });
-</script>
   
   <h3>Who is He? Overview</h3><br>
  <p>This poem based on <a href="https://www.biblegateway.com/passage/?search=Isaiah%2042%3A5-6&version=AMP">Isaiah 45:5-6.</a>It is a piece of lyrical poetry designed to exalt the Creator.<br>
@@ -721,7 +678,52 @@ someone who can do greater than Thee?<br><br>
     opacity: 0.85;
   }
 </style>
+ 
+   <div class="audio-player-container">
+  <div class="audio-info">
+    <strong> Audio Reading</strong>
+    <span>Duration: 0:30</span>
+  </div>
 
+  <!-- Hidden HTML5 Audio Element -->
+  <audio id="audioResourceFile" src="Who is He (1).mp3" preload="none"></audio>
+
+  <!-- Control Button -->
+  <button id="playAudioBtn" class="audio-control-btn">
+    <span class="btn-icon">▶</span> <span class="btn-text">Play Recording</span>
+  </button>
+</div>
+
+<script>
+  const audioFile = document.getElementById('audioResourceFile');
+  const playBtn = document.getElementById('playAudioBtn');
+  const btnIcon = playBtn.querySelector('.btn-icon');
+  const btnText = playBtn.querySelector('.btn-text');
+
+  playBtn.addEventListener('click', function() {
+    if (audioFile.paused) {
+      // If audio is stopped, play it
+      audioFile.play();
+      btnIcon.textContent = '⏸';
+      btnText.textContent = 'Pause Recording';
+      playBtn.classList.add('playing');
+    } else {
+      // If audio is active, pause it
+      audioFile.pause();
+      btnIcon.textContent = '▶';
+      btnText.textContent = 'Play Recording';
+      playBtn.classList.remove('playing');
+    }
+  });
+
+  // Automatically reset the button text when the audio recording finishes playing
+  audioFile.addEventListener('ended', function() {
+    btnIcon.textContent = '▶';
+    btnText.textContent = 'Play Recording';
+    playBtn.classList.remove('playing');
+  });
+</script>
+   
 <!-- The actual functioning download link -->
 <br><a href="Who is He - Liam Diaz.pdf" download="Who is He - Liam Diaz.pdf" class="bibleline-btn-container">
   <button type="button" class="bibleline-download-btn">
