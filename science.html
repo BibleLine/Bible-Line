@@ -389,84 +389,129 @@ body.dark-mode footer {
      <p><a href="https://www.icr.org/subscriptions/signup">7. * ICR Acts & Facts magazine</a><br>ICR's Christian creation magazine for all ages and mails anywhere in the U.S.A. for <em>free.</em> </p>
 <br><br>
 </section>
+
 <!-- Verse of the Day Widget Container -->
 <div id="verse-widget">
   <div class="verse-header">Verse of the Day</div>
-  <p id="verse-text">Fetching today's verse...</p>
+  <p id="verse-text">Loading daily verse...</p>
   <p id="verse-reference"></p>
 </div>
 
-<!-- Widget Styling (Customized to match your site's dark poetry theme) -->
+<!-- Widget Styling (Enhanced for dark mode compatibility) -->
 <style>
   #verse-widget {
-    font-family: 'Playfair Display', serif;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #1a1a1a; /* Matches your dark sections */
-    border-radius: 4px; /* Matches your subtle borders */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     text-align: center;
-    border: 1px solid #333333;
+    border: 1px solid #EAEAEA;
   }
+
+  body.dark-mode #verse-widget {
+    background-color: #2a2a2a;
+    border: 1px solid #444444;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
   .verse-header {
-    font-family: 'Cinzel', serif; /* Matches your site headers */
     font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #ae914b; /* Subtle gold accent color */
-    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    color: #888888;
+    margin-bottom: 15px;
     font-weight: 600;
   }
-  #verse-text {
-    font-size: 1.35rem;
-    font-style: italic;
-    color: #e0e0e0; /* Clean, readable off-white */
-    line-height: 1.7;
-    margin-bottom: 15px;
+
+  body.dark-mode .verse-header {
+    color: #aaaaaa;
   }
+
+  #verse-text {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #2C3E50;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  body.dark-mode #verse-text {
+    color: #e0e0e0;
+  }
+
   #verse-reference {
-    font-family: 'Cinzel', serif;
     font-size: 1rem;
     font-weight: 600;
-    color: #ae914b;
+    color: #3498DB;
     margin: 0;
+  }
+
+  body.dark-mode #verse-reference {
+    color: #5dade2;
   }
 </style>
 
-<!-- Widget Logic (Fetches live data from the API) -->
+<!-- Widget Logic -->
 <script>
-  async function fetchDailyVerse() {
-    try {
-      // Fetches the live daily JSON data from the API
-      const response = await fetch('https://ourmanna.com');
-      
-      if (!response.ok) throw new Error('Network response failure');
-      
-      const data = await response.json();
-      
-      // Drills into the JSON layers
-      const text = data.verse.details.text;
-      const reference = data.verse.details.reference;
-
-      // Injects the live data into the HTML
-      document.getElementById("verse-text").innerText = `“${text}”`;
-      document.getElementById("verse-reference").innerText = reference;
-      
-    } catch (error) {
-      console.error('Error fetching verse:', error);
-      // Fallback text if the external API ever experiences downtime
-      document.getElementById("verse-text").innerText = "“The world and its desires pass away, but the man who does the will of God lives forever.”";
-      document.getElementById("verse-reference").innerText = "1 John 2:17";
+  // A curated list of verses to rotate through daily
+  const verses = [
+    {
+      text: "For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.",
+      ref: "Jeremiah 29:11"
+    },
+    {
+      text: "Trust in the Lord with all your heart, and do not lean on your own understanding.",
+      ref: "Proverbs 3:5"
+    },
+    {
+      text: "The Lord is my shepherd; I shall not want.",
+      ref: "Psalm 23:1"
+    },
+    {
+      text: "I can do all things through him who strengthens me.",
+      ref: "Philippians 4:13"
+    },
+    {
+      text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles.",
+      ref: "Isaiah 40:31"
+    },
+    {
+      text: "Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go.",
+      ref: "Joshua 1:9"
+    },
+    {
+      text: "And we know that for those who love God all things work together for good, for those who are called according to his purpose.",
+      ref: "Romans 8:28"
     }
+  ];
+
+  function displayDailyVerse() {
+    // Get the current day of the year (0-365) to determine the index
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+
+    // Select the verse using the day number
+    const verseIndex = dayOfYear % verses.length;
+    const dailyVerse = verses[verseIndex];
+
+    // Inject into the HTML
+    document.getElementById("verse-text").innerText = `"${dailyVerse.text}"`;
+    document.getElementById("verse-reference").innerText = dailyVerse.ref;
   }
 
-  // Runs the live fetch as soon as the page finishes loading
-  window.onload = fetchDailyVerse;
+  // Run the function when the page loads
+  window.onload = displayDailyVerse;
+</script>
+
 <footer>
   <p>© 2026 Bible Line</p>
 </footer>
-
 
   
 <script>
