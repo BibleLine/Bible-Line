@@ -344,6 +344,71 @@
         .search-box button { padding: 12px 20px; background: rgb(56, 107, 66); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; }
         .search-result-box { max-width: 500px; margin: 0 auto; padding: 20px; background: #fff; border-left: 4px solid rgb(56, 107, 66); border-radius: 4px; }
         body.dark-mode .search-result-box { background: #2a2a2a; }
+   
+    /* Base Card Layout */
+.creator-card {
+  max-width: 320px; /* Small, compact width */
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-family: system-ui, -apple-system, sans-serif;
+  
+  /* Smooth transition setup for the hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Header Layout (Flexbox aligns image and text side-by-side) */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+/* Circular Profile Picture */
+.card-picture {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2c3e50; /* Adjust color to match your site theme */
+}
+
+/* Typography Inside Card */
+.card-titles h1 {
+  font-size: 1.15rem;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  display: block;
+  margin-top: 2px;
+}
+
+.card-content p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #34495e;
+  margin: 0 0 10px 0;
+}
+
+.card-content p:last-child {
+  margin-bottom: 0; /* Cleans up spacing at the bottom */
+}
+
+/* The Hover Animation Effect */
+.creator-card:hover {
+  transform: translateY(-5px); /* Lifts the card up slightly */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Deepens the shadow */
+  border-color: #2c3e50; /* Optional: Changes border accent color on hover */
+}
     </style>
 </head>
 <body>
@@ -411,6 +476,21 @@
     </div>
 </section>
 
+    <!-- Hoverable Creator Card -->
+<aside class="creator-card">
+  <div class="card-header">
+    <img src="bibleline_logo.png" alt="Ethan Mark Profile Picture" class="card-picture">
+    <div class="card-titles">
+      <h1>Ethan Mark</h1>
+      <span class="card-subtitle">Creator of Bible Line</span>
+    </div>
+  </div>
+  
+  <div class="card-content">
+    <p>Ethan created Bible Line in 2026 as a teachers and parents schooling hub with resources and websites to help and empower them with what they need for teaching.</p>
+    <p>He is an aspiring innovator and is currently working on Christian Bible lessons for all ages.</p>
+  </div>
+</aside>
 <!---<section class="search-section">
     <h2>Quick Scripture Lookup</h2>
     <div class="search-box">
