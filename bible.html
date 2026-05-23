@@ -5,8 +5,8 @@
 <title>Bible Line | Resources | Bible</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-       .dropdown-content {
-  display: none;
+    .dropdown-content {
+ display: none;
   position: absolute; /* Position it below the item */
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -14,7 +14,7 @@
   z-index: 1;
 }
 
- .dropdown:hover .dropdown-content {
+ .dropdown:hover  .dropdown-content{
   display: block; /* Show the box */
 }
   
@@ -292,7 +292,7 @@ body.dark-mode footer {
                  background: #1008;
              }
              ::-webkit-scrollbar-thumb:hover {
-                 background: #688;
+                 background: #788;
              }
        
      .close:hover,
@@ -319,7 +319,90 @@ body.dark-mode footer {
  }
 
 
- 
+ /* Section Spacing */
+.resource-section {
+  margin-bottom: 40px;
+}
+
+.resource-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 8px;
+}
+
+/* CSS Grid Container */
+.resource-grid {
+  display: grid;
+  /* Automatically wraps cards. Minimum width 280px, expands to fill space */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px; /* Space between cards */
+}
+
+/* Individual Resource Card */
+.resource-card {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  justify-content: space-between; /* Pushes the action link to the bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect */
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Content Styling */
+.resource-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #0366d6; /* GitHub-style blue link color */
+}
+
+.resource-card p {
+  font-size: 14px;
+  color: #586069;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Makes description fill space so links align perfectly */
+}
+
+/* Action Link */
+.card-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional Category Badges */
+.card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #e1f5fe;
+  color: #0288d1;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-badge.media {
+  background: #ede7f6;
+  color: #5e35b1;
+}
 </style>
 </head>
 
@@ -370,19 +453,56 @@ body.dark-mode footer {
 
 <section>
 <h2>Resources for all ages: Bible</h2><br>
-  <p>(Please note that not all the resources are Christan based and we reconmend you check out the sites before sharing it to anyone.)</p>
-
- <p><a href="https://freedomhomeschooling.com/bible/">1.  Freedom Homeschooling</a><br> A christian homeschooling resources website.</p> <br><br>
-
-   <p><a href="https://discoverycenter.icr.org/">2. * ICR Discovery center</a><br>A christian creation science and Bible research mueseum for all ages in Dallas, Texas.</p><br><br>
-
-     <p><a href="https://www.icr.org/subscriptions/signup">3. * ICR Acts & Facts magazine</a><br>ICR's Christian creation magazine for all ages and mails anywhere in the U.S.A. for <em>free.</em> </p><br><br>
-
-    <p><a href="https://bibleproject.com/">4. * Bible Project</a><br>A christian Bible lessons website with videos, guides, podcasts, and more.</p><br><br>
+  <p>(Please note that not all the resources are Christan based and we reconmend you check out the sites before sharing it to anyone.)</p></section>
   
-  <p><a href="https://us-en.superbook.cbn.com/">5. * Superbook</a><br>Christian Bible lessons, games, printouts and more!</p>
-  <br><br>
+<!-- Section 1: Study Tools -->
+<section class="resource-section">
+  <h2>Websites & Curriculum</h2>
+  <div class="resource-grid">
+    <div class="resource-card">
+      <div class="card-badge">Website</div>
+      <h3> * Freedom Homeschooling</h3>
+      <p>A christian homeschooling resources website.</p>
+      <a href="https://freedomhomeschooling.com/">Open Tool →</a>
+    </div>
+
+
+      <div class="resource-card">
+      <div class="card-badge">Site</div>
+      <h3> * Superbook</h3>
+      <p>Christian Bible lessons, games, printouts and more.</p>
+      <a href="https://us-en.superbook.cbn.com/">Visit Site →</a>
+    </div>
+  </div>
+
+
+      <div class="resource-card">
+      <div class="card-badge">Site</div>
+      <h3> * ICR Discorvery Center</h3>
+      <p>A christian creation science research mueseum for all ages in Dallas, Texas.</p>
+      <a href="https://discoverycenter.icr.org/">Visit Site →</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+      <div class="card-badge">Site</div>
+      <h3>* ICR Acts & Facts Magazine</h3>
+      <p>ICR's Christian creation magazine for all ages and mails anywhere in the U.S.A. for <em>free.</em></p>
+      <a href="https://www.icr.org/subscriptions/signup">Visit Site →</a>
+    </div>
+
+      <div class="resource-card">
+      <div class="card-badge">Site</div>
+      <h3> * Bible Project</h3>
+      <p>A christian Bible lessons website with videos, guides, podcasts, and more.</p>
+      <a href="https://bibleproject.com/">Visit Site →</a>
+    </div>
+  </div>
+  
 </section>
+  
+
+
 
 <!-- Verse of the Day Widget Container -->
 <div id="verse-widget">
