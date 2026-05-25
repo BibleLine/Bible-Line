@@ -409,6 +409,138 @@
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Deepens the shadow */
   border-color: #2c3e50; /* Optional: Changes border accent color on hover */
 }
+
+        /* Carousel Styling */
+        .carousel-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .carousel-container {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        body.dark-mode .carousel {
+            background: #222;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Carousel Controls */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        body.dark-mode .carousel-controls {
+            background: #2a2a2a;
+        }
+
+        .carousel-btn {
+            background: rgb(56, 107, 66);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .carousel-btn:hover {
+            background: #3d7547;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: rgb(56, 107, 66);
+        }
+
+        .dot:hover {
+            background: #999;
+        }
+
+        .carousel-title {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background: white;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        body.dark-mode .carousel-title {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border-bottom-color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .carousel {
+                height: 250px;
+            }
+
+            .carousel-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .carousel-title {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -457,6 +589,35 @@
         <h2>Welcome</h2>
         <p>Welcome to Bible Line. Bible Line is a christian resources website to help and give Bible resources, lesson plans, and more.</p>
     </section>
+
+    <!-- Auto-Rotating Carousel -->
+    <div class="carousel-container">
+        <div class="carousel-title">Featured Content</div>
+        <div class="carousel">
+            <div class="carousel-slide active">
+                <img src="bibleline_logo.png" alt="Featured Image 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="bibleline_logo.png" alt="Featured Image 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="bibleline_logo.png" alt="Featured Image 3">
+            </div>
+            <div class="carousel-slide">
+                <img src="bibleline_logo.png" alt="Featured Image 4">
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" onclick="previousSlide()">← Previous</button>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+            <button class="carousel-btn" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
     
 <section class="features-grid">
     <div class="feature-card">
@@ -563,6 +724,45 @@
             document.getElementById("verse-reference").innerText = dailyVerse.ref;
         }
 
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let autoRotateInterval;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            showSlide((currentSlide + 1) % slides.length);
+            resetAutoRotate();
+        }
+
+        function previousSlide() {
+            showSlide((currentSlide - 1 + slides.length) % slides.length);
+            resetAutoRotate();
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+            resetAutoRotate();
+        }
+
+        function autoRotate() {
+            nextSlide();
+        }
+
+        function resetAutoRotate() {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = setInterval(autoRotate, 5000); // Change slide every 5 seconds
+        }
+
         // Toggle sidebar menu
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebarMenu');
@@ -583,6 +783,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Run verse display
             displayDailyVerse();
+
+            // Start carousel auto-rotation
+            autoRotateInterval = setInterval(autoRotate, 5000);
 
             // Close sidebar when clicking on a link
             document.querySelectorAll('.sidebar-menu a').forEach(link => {
