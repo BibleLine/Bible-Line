@@ -5,7 +5,7 @@
 <title>Bible Line | Resources | Bible Line Resources</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
- .dropdown-content {
+    .dropdown-content {
  display: none;
   position: absolute; /* Position it below the item */
   background-color: #f9f9f9;
@@ -15,7 +15,7 @@
 }
 
  .dropdown:hover  .dropdown-content{
-  display: block; background-color: #f9f9f9;/* Show the box */
+  display: block; /* Show the box */
 }
   
   body {
@@ -36,14 +36,138 @@ background:#130;
 color:white;
 text-align:center;
 padding:40px;
+position: relative;
 }
 
-    .size{
+  .size{
     font-size: 55px;
   }
-
+  
 body.dark-mode header {
   background: #0a0a0a;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #130;
+    color: white;
+    padding-top: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+body.dark-mode .sidebar-menu {
+    background: #0a0a0a;
+}
+
+.sidebar-menu.active {
+    transform: translateX(0);
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-menu a:hover, 
+.sidebar-menu a:active, 
+.sidebar-menu a:focus {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    padding-left: 25px;
+    color: rgb(56, 107, 66);
+}
+
+.sidebar-menu a.active {
+    background-color: rgba(56, 107, 66, 0.2);
+    border-left-color: rgb(56, 107, 66);
+    color: rgb(56, 107, 66);
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2001;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode .menu-toggle {
+    background: #666;
+}
+
+.menu-toggle:hover {
+    background: rgb(56, 107, 66);
+    transform: scale(1.05);
+}
+
+/* Close button inside sidebar */
+.sidebar-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.sidebar-close:hover {
+    color: rgb(56, 107, 66);
+}
+
+/* Overlay when sidebar is open */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    display: none;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Sidebar menu title */
+.sidebar-title {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 nav {
@@ -103,6 +227,14 @@ font-size:16px;
   cursor: pointer;
   font-weight: bold;
   margin: 10px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: rgb(56, 107, 66);
 }
 
 body.dark-mode .dark-mode-toggle {
@@ -169,199 +301,108 @@ body.dark-mode footer {
                  text-decoration: none;
                  cursor: pointer;
              }
-     .dark-mode-toggle {
-  background: #333;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 10px;
-  position: absolute;
-}
 
-/* Position button in TOP RIGHT corner */
-.dark-mode-toggle.top-right {
-  top: 20px;
-  right: 20px;
-}
-
-/* Position button in TOP LEFT corner */
-.dark-mode-toggle.top-left {
-  top: 20px;
-  left: 20px;
-}
-
-/* Position button in BOTTOM RIGHT corner */
-.dark-mode-toggle.bottom-right {
-  bottom: 20px;
-  right: 20px;
-}
-
-/* Position button in BOTTOM LEFT corner */
-.dark-mode-toggle.bottom-left {
-  bottom: 20px;
-  left: 20px;
-}
-
-/* Position button CENTER of header */
-.dark-mode-toggle.center {
-  position: static;
-  display: block;
-  margin: 10px auto;
-}
-
-/* Make header position relative so absolute positioning works inside it */
-header {
-  background:#130;
-  color:white;
-  text-align:center;
-  padding:40px;
-  position: relative;
-}
-  /* Sidebar Menu */
-  .sidebar-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    background: #130;
-    color: white;
-    padding-top: 20px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 2000;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-  }
-
-  body.dark-mode .sidebar-menu {
-    background: #0a0a0a;
-  }
-
-  .sidebar-menu.active {
-    transform: translateX(0);
-  }
-
-  .sidebar-menu a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-  }
-
-  .sidebar-menu a:hover, 
-  .sidebar-menu a:active, 
-  .sidebar-menu a:focus {
-    background-color: rgba(56, 107, 66, 0.2);
-    border-left-color: rgb(56, 107, 66);
-    padding-left: 25px;
-    color: rgb(56, 107, 66);
-  }
-
-  .sidebar-menu a.active {
-    background-color: rgba(56, 107, 66, 0.2);
-    border-left-color: rgb(56, 107, 66);
-    color: rgb(56, 107, 66);
-  }
-
-  /* Menu Toggle Button */
-  .menu-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 2001;
-    background: #333;
-    color: white;
-    border: none;
-    padding: 12px 15px;
-    font-size: 24px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  body.dark-mode .menu-toggle {
-    background: #666;
-  }
-
-  .menu-toggle:hover {
-    background: rgb(56, 107, 66);
-    transform: scale(1.05);
-  }
-
-  /* Close button inside sidebar */
-  .sidebar-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.3s ease;
-  }
-
-  .sidebar-close:hover {
-    color: rgb(56, 107, 66);
-  }
-
-  /* Overlay when sidebar is open */
-  .sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1999;
-    display: none;
-  }
-
-  .sidebar-overlay.active {
-    display: block;
-  }
-
-  /* Adjust header for menu */
-  header {
-    margin-left: 0;
-    transition: margin-left 0.3s ease;
-  }
-
-  /* Sidebar menu title */
-  .sidebar-title {
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
- 
- /* Mobile adjustments */
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .menu-toggle {
-      width: 45px;
-      height: 45px;
-      padding: 10px;
+        width: 45px;
+        height: 45px;
+        padding: 10px;
     }
 
     .sidebar-menu {
-      width: 200px;
+        width: 200px;
     }
-  }
- 
+}
+ a{
+  text-decoration:none;
+  color:rgb(90, 122, 92);
+ }
+
+
+ /* Section Spacing */
+.resource-section {
+  margin-bottom: 40px;
+}
+
+.resource-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 8px;
+}
+
+/* CSS Grid Container */
+.resource-grid {
+  display: grid;
+  /* Automatically wraps cards. Minimum width 280px, expands to fill space */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px; /* Space between cards */
+}
+
+/* Individual Resource Card */
+.resource-card {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  justify-content: space-between; /* Pushes the action link to the bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect */
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Content Styling */
+.resource-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #0366d6; /* GitHub-style blue link color */
+}
+
+.resource-card p {
+  font-size: 14px;
+  color: #586069;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Makes description fill space so links align perfectly */
+}
+
+/* Action Link */
+.card-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional Category Badges */
+.card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #e1f5fe;
+  color: #0288d1;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-badge.media {
+  background: #ede7f6;
+  color: #5e35b1;
+}
 </style>
     
 </head>
@@ -406,41 +447,20 @@ header {
 <section class="hero">
 <h2>Bible Line Resources</h2><br>
   <p>Free, Bible Line made and trusted resources for all ages. </p><br><br>
-<h3>Poetry</h3><br>
-  <p> Poetry made by Bible Line creators and contributers for you and others to enjoy. </p>
 </section>
-  
-<section> <br>
-<h2>Latest Writing</h2>
-<h3>Love Definition Overview</h3>
-<p>The Love Definition is a poem inspired by <a href="https://www.biblegateway.com/passage/?search=1%20Corinthians%2013%3A4-8&version=AMP">1 Corinthians 4-8</a> in 2025. The Love Definition takes the verse and<br>
  
- gives it a personal perspective on when and<br>
- 
- how each attribute of love is used. Made by Ethan Mark.</p><br></section> 
+  <div class="resource-card">
+      <div class="card-badge">Site</div>
+      <h3>Love Definition Printout</h3>
+      <p>The Love Definition is a poem inspired by <a href="https://www.biblegateway.com/passage/?search=1%20Corinthians%2013%3A4-8&version=AMP">1 Corinthians 4-8</a> in 2025. The Love Definition takes the verse and gives it a personal perspective on when and how each attribute of love is used. Made by Ethan Mark.</p>
+     <a href="The love definition - Liam Diaz.pdf" download="The love definition - Liam Diaz.pdf" class="bibleline-btn-container">
+  <button type="button" class="bibleline-download-btn">
+    <span class="main-text">Wanna download the poem?</span>
+    <span class="sub-text">Click to save PDF</span>
+  </button>
+</a>
+    </div> 
 
-<section class="hero"> <h3>The love Definition</h3>
-<p>Love is patient, <br><br>
-
-Even though we can be complacent. <br><br>
-
-Love never fails, nor does it fade,<br><br>
-
-it is always there, even when you're afraid.<br><br>
-
-Love endures all things without weakening,<br><br>
-
-even when we can be very self-seeking.<br><br>
-
-Love is neither jealous nor rudefull,<br><br>
-
-instead, it is kind and thoughtful.<br><br>
-
-So if you are ever in a bind,<br><br>
-
-God's warm love is what you will always find.
-
-    </p>
 <!-- Styling matching bibleline.github.io -->
 <style>
   .bibleline-btn-container {
